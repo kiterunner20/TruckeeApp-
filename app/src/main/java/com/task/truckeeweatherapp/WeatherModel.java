@@ -17,7 +17,7 @@ public class WeatherModel implements WeatherContract.Model {
     public void getDailyWeather(final OnFinishedListener onFinishedListener, String date) {
         WeatherInterface apiService =
                 WeatherClient.getClient().create(WeatherInterface.class);
-        Call<WeatherDetails> call = apiService.getWeatherData(API_KEY, 39.3280, 120.1833,
+        Call<WeatherDetails> call = apiService.getWeatherData(API_KEY, 39.3280, -120.1833,
                 date, "hourly,currently,flags");
         call.enqueue(new Callback<WeatherDetails>() {
             @Override

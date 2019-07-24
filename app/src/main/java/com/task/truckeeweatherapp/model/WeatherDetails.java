@@ -20,7 +20,7 @@ public class WeatherDetails {
     private Daily daily;
     @SerializedName("offset")
     @Expose
-    private int offset;
+    private float offset;
 
     public double getLatitude() {
         return latitude;
@@ -54,12 +54,9 @@ public class WeatherDetails {
         this.daily = daily;
     }
 
-    public int getOffset() {
+    public float getOffset() {
         return offset;
     }
 
-    public void setOffset(int offset) {
-        this.offset = offset;
-    }
 
 }
