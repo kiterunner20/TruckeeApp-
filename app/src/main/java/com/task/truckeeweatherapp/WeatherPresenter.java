@@ -23,7 +23,10 @@ public class WeatherPresenter implements WeatherContract.Presenter, WeatherContr
 
     @Override
     public void setWeatherData(List<Datum> data) {
-        if(data != null){
+        if (weatherView != null) {
+            weatherView.hideProgress();
+        }
+        if (data != null) {
             weatherView.setWeatherData(data);
         }
     }
@@ -35,6 +38,9 @@ public class WeatherPresenter implements WeatherContract.Presenter, WeatherContr
 
     @Override
     public void getDailyWeatherData(String date) {
+        if (weatherView != null) {
+            weatherView.showProgress();
+        }
         weatherModel.getDailyWeather(this, date);
     }
 }

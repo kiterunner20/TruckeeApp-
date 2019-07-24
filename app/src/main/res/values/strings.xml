@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Truckee Weather App</string>
+    <string name="fetching_weather">Fetching the weather</string>
 </resources>
