@@ -18,7 +18,7 @@ public class WeatherPresenter implements WeatherContract.Presenter, WeatherContr
 
     @Override
     public void onFailure(Throwable t) {
-
+        weatherView.onResponseFailure(t);
     }
 
     @Override
@@ -28,6 +28,13 @@ public class WeatherPresenter implements WeatherContract.Presenter, WeatherContr
         }
         if (data != null) {
             weatherView.setWeatherData(data);
+        }
+    }
+
+    @Override
+    public void setEmptyData() {
+        if (weatherView != null) {
+            weatherView.setEmptyData();
         }
     }
 

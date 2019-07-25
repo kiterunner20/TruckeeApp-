@@ -8,4 +8,5 @@
     <color name="bottomcolor">#2EADCF</color>
     <color name="white">#FFFFFF</color>
     <color name="dark_boarder">#268BAA</color>
+    <color name="black">#000000</color>
 </resources>

@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Truckee Weather App</string>
     <string name="fetching_weather">Fetching the weather</string>
+    <string name="weather_error">
+       <![CDATA[ <font size="30">Sorry there was a problem fetching your weather data</font>]]>
+    </string>
+    <string name="no_data">
+       <![CDATA[ <font size="30">No data found for the selected date.</font>]]>
+    </string>
 </resources>

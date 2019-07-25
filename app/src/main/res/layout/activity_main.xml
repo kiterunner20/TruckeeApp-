@@ -26,9 +26,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/progressbar"
             android:layout_marginTop="15dp"
+            android:text="@string/fetching_weather"
             android:textColor="@color/white"
-            android:textSize="20dp"
-            android:text="@string/fetching_weather" />
+            android:textSize="20dp" />
 
     </RelativeLayout>
 
@@ -49,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/ic_calender"
+                android:fontFamily="@font/proximnova_semibold"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="    March 13,2014"
@@ -67,6 +68,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/proximnova_semibold"
                 android:gravity="center_vertical"
                 android:text="Truckee, CA"
                 android:textColor="@color/white"
@@ -93,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/im_weather_icon"
             android:layout_centerInParent="true"
+            android:fontFamily="@font/proximnova_semibold"
             android:padding="20dp"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -132,20 +135,36 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/proximnovaregular"
                 android:text="Low"
                 android:textColor="@color/white"
                 android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/tv_low_temp"
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_low"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:text="90"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tv_low_temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proximnova_semibold"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <View
+                    android:id="@+id/view_low"
+                    android:layout_width="70dp"
+                    android:layout_height="2dp"
+                    android:layout_above="@+id/rl_temp_status"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:visibility="gone" />
+            </FrameLayout>
+
 
         </RelativeLayout>
 
@@ -160,20 +179,37 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
+                android:fontFamily="@font/proximnovaregular"
                 android:text="Hi"
                 android:textColor="@color/white"
                 android:textSize="14dp" />
 
-            <TextView
-                android:id="@+id/tv_high_temparature"
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_high"
                 android:layout_centerHorizontal="true"
-                android:layout_margin="10dp"
-                android:text="100"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/tv_high_temparature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proximnova_semibold"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <View
+                    android:id="@+id/view_high"
+                    android:layout_width="70dp"
+                    android:layout_height="2dp"
+                    android:layout_above="@+id/rl_temp_status"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/white"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
         </RelativeLayout>
 
     </LinearLayout>

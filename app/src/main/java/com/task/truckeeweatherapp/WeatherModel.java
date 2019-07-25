@@ -26,6 +26,8 @@ public class WeatherModel implements WeatherContract.Model {
                     if (response.body().getDaily().getData() != null) {
                         onFinishedListener.setWeatherData(response.body().getDaily().getData());
                     }
+                }else{
+                    onFinishedListener.setEmptyData();
                 }
             }
 

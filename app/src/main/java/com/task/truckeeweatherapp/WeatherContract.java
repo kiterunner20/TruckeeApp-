@@ -15,6 +15,8 @@ public class WeatherContract {
             void onFailure(Throwable t);
 
             void setWeatherData(List<Datum> data);
+
+            void setEmptyData();
         }
 
         void getDailyWeather(OnFinishedListener onFinishedListener, String date);
@@ -30,6 +32,8 @@ public class WeatherContract {
         void onResponseFailure(Throwable throwable);
 
         void setWeatherData(List<Datum> data);
+
+        void setEmptyData();
     }
 
     interface Presenter {

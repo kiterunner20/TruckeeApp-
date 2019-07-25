@@ -1,16 +1,17 @@
 package com.task.truckeeweatherapp;
 
+
 import android.app.DatePickerDialog;
-import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Html;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.task.truckeeweatherapp.model.Datum;
 
@@ -30,6 +31,8 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     ImageView weatherIcon;
     RelativeLayout progressBarLayout;
     RelativeLayout imageLayout;
+    View lowLine;
+    View highLine;
 
     int tempratureLow;
     int temparatureHigh;
@@ -37,6 +40,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
     StringBuilder monthCalender = new StringBuilder();
     String[] months = {"January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(c);
         String[] separated = formattedDate.split("-");
-        tvDate.setText("  " + months[Integer.parseInt(separated[1])-1] + " " + separated[2] + "," + separated[0]);
+        tvDate.setText("  " + months[Integer.parseInt(separated[1]) - 1] + " " + separated[2] + "," + separated[0]);
         presenter = new WeatherPresenter(this);
         presenter.getDailyWeatherData(formattedDate + "T19:06:32");
 
@@ -85,29 +89,76 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         weatherType = findViewById(R.id.tv_weather_type);
         progressBarLayout = findViewById(R.id.rl_progressbar);
         imageLayout = findViewById(R.id.rl_image_layout);
+        lowLine = findViewById(R.id.view_low);
+        highLine = findViewById(R.id.view_high);
 
     }
 
 
     @Override
     public void showProgress() {
-        imageLayout.setVisibility(View.GONE);
-        progressBarLayout.setVisibility(View.VISIBLE);
+        switchViews(true);
     }
 
     @Override
     public void hideProgress() {
-        imageLayout.setVisibility(View.VISIBLE);
-        progressBarLayout.setVisibility(View.GONE);
+        switchViews(false);
     }
 
     @Override
     public void onResponseFailure(Throwable throwable) {
 
+        switchViews(false);
+        setAlertDialog("noresponse");
+    }
+
+    @Override
+    public void setEmptyData() {
+        switchViews(false);
+        setAlertDialog("emptydata");
+    }
+
+    private void setAlertDialog(String data) {
+        final AlertDialog alertDialog = new AlertDialog.Builder(WeatherActivity.this).create();
+
+        if (data.equals("noresponse")) {
+            alertDialog.setMessage(Html.fromHtml(getString(R.string.weather_error)));
+        }
+        if (data.equals("emptydata")) {
+            alertDialog.setMessage(Html.fromHtml(getString(R.string.no_data)));
+        }
+
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
+    }
+
+    public void switchViews(boolean view) {
+        if (view == true) {
+            imageLayout.setVisibility(View.GONE);
+            progressBarLayout.setVisibility(View.VISIBLE);
+            tvHighTemparature.setVisibility(View.GONE);
+            tvLowTemparature.setVisibility(View.GONE);
+            lowLine.setVisibility(View.VISIBLE);
+            highLine.setVisibility(View.VISIBLE);
+        } else {
+            imageLayout.setVisibility(View.VISIBLE);
+            progressBarLayout.setVisibility(View.GONE);
+            tvHighTemparature.setVisibility(View.VISIBLE);
+            tvLowTemparature.setVisibility(View.VISIBLE);
+            lowLine.setVisibility(View.GONE);
+            highLine.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void setWeatherData(List<Datum> data) {
+
         if (data != null) {
             if (data.get(0) != null) {
                 tempratureLow = (int) Math.round(data.get(0).getTemperatureLow());
@@ -148,6 +199,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
             }
         }
     }
+
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
