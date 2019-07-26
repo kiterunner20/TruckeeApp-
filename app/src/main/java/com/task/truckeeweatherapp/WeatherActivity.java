@@ -58,7 +58,7 @@ public class WeatherActivity extends AppCompatActivity implements WeatherContrac
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         String formattedDate = df.format(c);
         String[] separated = formattedDate.split("-");
-        tvDate.setText("  " + months[Integer.parseInt(separated[1]) - 1] + " " + separated[2] + "," + separated[0]);
+        tvDate.setText("   " + months[Integer.parseInt(separated[1]) - 1] + " " + separated[2] + "," + separated[0]);
         presenter = new WeatherPresenter(this);
         presenter.getDailyWeatherData(formattedDate + "T19:06:32");
 
