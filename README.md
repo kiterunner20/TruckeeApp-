@@ -2,7 +2,7 @@
 
 TruckeeApp is one which shows weather of Truckee , California.
 
-Its using Dark sky API to get the weather data. MVP architecture is used .Retrofit for the network call.
+Its using Dark sky API to get the weather data. MVP architecture is used .Retrofit for the network call. This app is done as a project which can help the people who wants to start use MVP in their projects.
 
 
 
