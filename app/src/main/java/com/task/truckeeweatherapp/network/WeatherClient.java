@@ -7,7 +7,7 @@ public class WeatherClient {
 
     public static final String BASE_URL = "https://api.darksky.net/";
     private static Retrofit retrofit = null;
-    public static final String API_KEY = "8d599801e49f87e9246985a4ae44cace";
+    public static final String API_KEY = "YOUR_API_KEY";
 
     public static Retrofit getClient() {
         if (retrofit == null) {
